@@ -36,3 +36,8 @@ jobs:
     - name: Test with PyTest
       run: |
         python3 -m pytest --cov=regenslangen.calculations tests/test_calculations.py
+
+    - name: Linter with PyLint
+      run: |
+        pylint regenslangen
+        pylint main.py
