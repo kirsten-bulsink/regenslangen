@@ -39,5 +39,4 @@ jobs:
 
     - name: Linter with PyLint
       run: |
-        pylint regenslangen
-        pylint main.py
+        pylint main.py regenslangen tests

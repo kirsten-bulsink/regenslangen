@@ -1,6 +1,7 @@
 """Tests for calculations"""
 
 import pytest
+from regenslangen.calculations import get_dice_count_scores
 
 
 @pytest.mark.parametrize(
@@ -44,6 +45,5 @@ import pytest
 )
 def test_dice_count_scores(test, expected):
     """Test that dice_count_score fun works for a random input."""
-    from regenslangen.calculations import get_dice_count_scores
 
     assert get_dice_count_scores(test) == expected
