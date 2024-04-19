@@ -1,10 +1,10 @@
 # Regenslangen
-![Continuous Integration build in GitHub Actions](https://github.com/<your_github_username>/python-intermediate-inflammation/actions/workflows/main.yml/badge.svg?branch=main)
+![Continuous Integration build in GitHub Actions](https://github.com/kirsten-bulsink/regenslangen/actions/workflows/main.yml/badge.svg?branch=main)
 
 Regenslangen is a software program that calculates a maximum score in the dice game Regenslangen.
 
 ## Explanation of the Regenslangen game
-The regenslangen game is inspired by Advent of Code puzzles and the game 'regenwormen'. It was invented by Vince van Noort as my 'surprise' for 'Sinterklaas'. 
+The regenslangen game is inspired by Advent of Code puzzles and the game 'regenwormen'. It was invented by [Vince van Noort](https://github.com/vincevannoort) as my 'surprise' for 'Sinterklaas'. 
 
 The goal: find the maximum score in each round. The maximun score of all rounds togehter returns the code that opens my present!! :smile:
 
