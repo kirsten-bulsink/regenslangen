@@ -24,9 +24,9 @@ def get_dice_count_scores(game_round: list[str]) -> list[tuple[int, str, int, in
     return round_scores
 
 
-def get_a_valid_score(
+def get_valid_score(
     dicecountscores: list[tuple[int, str, int, int]],
-) -> tuple[int, bool]:
+) -> int:
     """
     Randomly chooses a dice from each toss in a round until maximum number of dice (8)
     is reached or until there is no valid option left to choose from. Sums the score of this 'try'.
@@ -72,9 +72,10 @@ def get_a_valid_score(
         print(f" total score until now is {total_score}")
         toss_nr += 1
     print("stop")
-    # add a logical that indicates whether a Python was used (which is obligated)
-    with_python = "P" in diff_dice_used
-    return total_score, with_python
+    # check whether a Python was used (otherwise score is not valid, so becomes zero..., should be None, but can't combine this with int)
+    valid_total_score = total_score if "P" in diff_dice_used else 0
+
+    return valid_total_score
 
 
 def get_max_score(dicecountscores: list[tuple[int, str, int, int]]) -> int:
@@ -86,10 +87,86 @@ def get_max_score(dicecountscores: list[tuple[int, str, int, int]]) -> int:
 
     all_scores = []
     for _ in range(1000):
-        score = get_a_valid_score(dicecountscores)
-        number, python = score
-        # only add to score list if python is true
-        if python:
-            all_scores.append(number)
+        score = get_valid_score(dicecountscores)
+        all_scores.append(score)
     max_score = max(all_scores)
     return max_score
+
+
+# def choose_random_dice(
+#     dicecountscores: list[tuple[int, str, int, int]],
+# ) -> list[int, list[tuple[str, int]]]:
+#     """
+#     Randomly chooses a dice from each toss in a round until maximum number of dice (8)
+#     is reached or until there is no valid option left to choose from. Sums the score of this 'try'.
+
+#     Two other game rules are checked to create a valid score:
+#     - if a dice number (1 till 5 or P) is used, it cannot be chosen anymore in the next tosses.
+#     - the total set of chosen dice should include a Python.
+
+#     :param dicecountscores: list of tuples with each possible choice of dice (toss_nr, dice, count, score)
+#     """
+
+#     dicecount_choices = []
+#     total_dice_used = 0
+#     total_score = 0
+#     diff_dice_used = []
+#     toss_nr = 1
+#     while total_dice_used < 9:
+#         print(f" round {toss_nr}")
+#         toss_subset = [i for i in dicecountscores if i[0] == toss_nr]
+
+#         # remove dice that were already used
+#         toss_subset_legal = [i for i in toss_subset if i[1] not in diff_dice_used]
+#         # check if there is any option left
+#         if toss_subset_legal == []:
+#             print("sample is empty, impossible")
+#             break
+#         # if so, choose a random option
+#         choice = random.choice(toss_subset_legal)
+#         (toss_nr, dice, count, score) = choice
+#         choice_short = (dice, count)
+
+#         # check the number of dice used
+#         total_dice_used += count
+#         if total_dice_used > 8:
+#             print(
+#                 f" this choice would use {total_dice_used} dice, which is impossible. keep the latest total score: {total_score}"
+#             )
+#             break
+
+#         # calculate the score and add the chosen dice to the list of diff_dice_used
+#         total_score += score
+#         diff_dice_used.append(dice)
+
+#         # add random choice to path for this round
+#         dicecount_choices.append(choice_short)
+#         toss_nr += 1
+#         # print(f" diff dice used {diff_dice_used}")
+#         # print(f" total dice used is {total_dice_used}")
+#         # print(f" total score until now is {total_score}")
+
+#     print("stop")
+
+#     return [total_score, dicecount_choices]
+
+
+# def get_max_score(dicecountscores: list[tuple[int, str, int, int]]) -> int:
+#     """
+#     Get a valid score a 1000 times, then take the max score.
+
+#     :param dicecountscores: list of tuples with each possible choice of dice (toss_nr, dice, count, score)
+#     """
+
+#     all_scores = []
+#     for _ in range(1000):
+#         result = choose_random_dice(dicecountscores)
+#         [score, dicecount]
+#         (toss_nr, dice, count, score) = path
+#         score = get_valid_score(dicecountscores)
+#         number, python = score
+#         # only add to score list if python is true
+#         if python:
+#             all_scores.append(number)
+#     max_score = max(all_scores)
+#     return max_score

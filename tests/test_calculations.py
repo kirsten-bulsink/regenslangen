@@ -44,6 +44,6 @@ from regenslangen.calculations import get_dice_count_scores
     ],
 )
 def test_dice_count_scores(test, expected):
-    """Test that dice_count_score fun works for a random input."""
+    """Test that dice_count_score fun works for two inputs."""
 
     assert get_dice_count_scores(test) == expected

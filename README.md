@@ -6,11 +6,12 @@ Regenslangen is a software program that calculates a maximum score in the dice g
 ## Explanation of the Regenslangen game
 The regenslangen game is inspired by Advent of Code puzzles and the game 'regenwormen'. It was invented by [Vince van Noort](https://github.com/vincevannoort) as my 'surprise' for 'Sinterklaas'. 
 
-The goal: find the maximum score in each round. The maximun score of all rounds togehter returns the code that opens my present!! :smile:
+The goal: find the maximum score in each round. The maximun score of all rounds together returns the code that opens my present!! :smile:
 
 The rules:
 - Dice have the possible outcomes of 1 till 5 or a Python (regenslang). The value of a dice is the same as the dice number and Pythons have a value of 5.
 - There are 8 dice in the game. Therefore, you can maximally take 8 dice per round.
+- Every round has a variable amount of tosses. You don't need to take dice of every toss, you can also stop earlier.
 - If you choose a dice number (1 till 5 or P), you need to take all dice of that number (or all Pythons).
 - If a dice number (1 till 5 or P) is chosen in a certain round, it cannot be chosen anymore in the next tosses.
 - The total set of chosen dice should always include a Python to be valid.
